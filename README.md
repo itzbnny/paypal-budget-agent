@@ -9,7 +9,7 @@ An AI budgeting agent for PayPal users, built for the [PayPal AI Hackathon](http
 Requires Node.js 20+.
 
 ```bash
-git clone https://github.com/<owner>/paypal-budget-agent.git
+git clone https://github.com/itzbnny/paypal-budget-agent.git
 cd paypal-budget-agent
 npm install
 cp .env.example .env   # add your PayPal sandbox credentials
