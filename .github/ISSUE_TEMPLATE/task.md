@@ -12,5 +12,8 @@ labels: task
 ## Files / area
 <!-- e.g. src/budget/ — helps avoid two agents editing the same files -->
 
+## Spec
+<!-- Filled in via docs/prompts/write-spec.md before anyone implements. Signatures, rules, test cases. -->
+
 ## Owner
-<!-- claude / codex / person — comment on the issue when you take it -->
+<!-- Assign yourself (gh issue edit N --add-assignee @me) before starting -->

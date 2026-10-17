@@ -37,7 +37,7 @@ See [docs/architecture.md](docs/architecture.md). An LLM agent loop chooses tool
 
 ## Contributing
 
-Humans and coding agents follow [AGENTS.md](AGENTS.md): issue → branch → PR → cross-review → merge.
+New teammate? Start with [CONTRIBUTING.md](CONTRIBUTING.md). Humans and coding agents follow [AGENTS.md](AGENTS.md): issue → branch → PR → cross-review → merge.
 
 ## License
 
