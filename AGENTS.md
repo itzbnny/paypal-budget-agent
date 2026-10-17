@@ -1,6 +1,6 @@
 # AGENTS.md — rules for every coding agent in this repo
 
-Two coding agents work on this repo, **Claude Code** and **OpenAI Codex CLI**, alongside the humans on the team. Both read this file: Codex reads `AGENTS.md` directly, and `CLAUDE.md` imports it. Put shared rules here, not in an agent-specific file.
+Each teammate (GitHub: `itzbnny`, `Poken-ninja`) runs their own coding agent, Claude Code or OpenAI Codex CLI. Both read this file: Codex reads `AGENTS.md` directly, and `CLAUDE.md` imports it. Put shared rules here, not in an agent-specific file.
 
 ## What we're building
 
@@ -34,12 +34,12 @@ npm run dev        # run locally with reload
 
 ## Workflow (required)
 
-1. **Work from a GitHub Issue.** Pick or create one, then comment that you're taking it so the other agent doesn't start the same thing.
-2. **Branch per issue:** `<agent-or-person>/<issue#>-<short-slug>`, e.g. `claude/12-spending-summary`, `codex/14-budget-alerts`, `ian/9-demo-script`.
+1. **Work from a GitHub Issue.** Pick or create one, **assign it to your human** (`gh issue edit <n> --add-assignee @me`) before starting, and skip issues that already have an assignee.
+2. **Branch per issue:** `<github-username>/<issue#>-<short-slug>`, e.g. `itzbnny/7-recurring-detection`, `Poken-ninja/2-plaid-probe`.
 3. **Never commit to `main` directly.** Open a PR that says `Closes #<issue>`.
 4. **Keep PRs small:** one issue each, ideally under ~400 changed lines.
 5. **`npm run check` must pass** locally and in CI.
-6. **Cross-review:** the agent that didn't write the PR reviews it, and a human merges.
+6. **Cross-review:** the *other* teammate (or their agent) reviews the PR, and a human merges. Don't merge your own PR without that review unless you're blocking the deadline.
 7. Before starting work, `git pull --rebase origin main`. Rebase your branch before opening the PR.
 8. **Don't modify files outside your issue's scope.** If you need to change a shared contract (types in `src/budget/types.ts`, tool schemas), call it out in the PR description.
 
