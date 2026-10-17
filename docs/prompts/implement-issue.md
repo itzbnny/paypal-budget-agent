@@ -3,6 +3,10 @@
 Human says: **"Start issue #N"** (or "Follow docs/prompts/implement-issue.md for #N").
 Follow every step in order. Don't skip the plan or the tests.
 
+**Stuck rule:** if `npm run check` still fails after **2 fix attempts on the same error**, or you're unsure what the spec means, stop. Tell your human what's failing and what you tried, and comment the same on the issue. Don't keep retrying; a teammate (or a stronger model) will unblock it. This saves tokens and avoids hacky fixes.
+
+**Keep context small:** read only the files listed in the spec's "Files / area" plus `src/budget/types.ts`. Don't scan the whole repo.
+
 ## 1. Load context
 - Read `AGENTS.md`, `EXECUTION_CONTRACT.md` (§2 features, §3 no-touch zones), and `docs/architecture.md`.
 - `gh issue view N --comments`. If it has no **Spec** section with function signatures and test cases, stop and tell your human: "Issue #N needs a spec first. Ask a teammate to run `docs/prompts/write-spec.md` on it." Don't guess at the design.
