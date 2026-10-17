@@ -53,6 +53,30 @@ for (const [label, path] of probes) {
   console.log(`  ${res.ok ? "✓" : "✗"} ${res.status} ${label.padEnd(40)} ${detail}`);
 }
 
+// Recent transactions, one line each (sandbox data only; no payer details printed)
+const txRes = await fetch(
+  `${BASE}/v1/reporting/transactions?start_date=${iso(start)}&end_date=${iso(end)}&fields=transaction_info&page_size=20`,
+  { headers: { Authorization: `Bearer ${token.access_token}` } },
+);
+if (txRes.ok) {
+  type TxInfo = {
+    transaction_initiation_date: string;
+    transaction_event_code: string;
+    transaction_status: string;
+    transaction_amount: { value: string; currency_code: string };
+    fee_amount?: { value: string };
+    transaction_note?: string;
+    transaction_subject?: string;
+  };
+  const tx = (await txRes.json()) as { last_refreshed_datetime?: string; transaction_details?: { transaction_info: TxInfo }[] };
+  console.log(`\nRecent transactions (reporting data last refreshed ${tx.last_refreshed_datetime ?? "?"}):`);
+  for (const { transaction_info: i } of tx.transaction_details ?? []) {
+    const fee = i.fee_amount ? ` fee ${i.fee_amount.value}` : "";
+    const note = i.transaction_note ?? i.transaction_subject ?? "";
+    console.log(`  ${i.transaction_initiation_date} ${i.transaction_event_code} ${i.transaction_status} ${i.transaction_amount.value} ${i.transaction_amount.currency_code}${fee}  ${note}`);
+  }
+}
+
 console.log(
   "\nNote: these calls run as the account that owns the REST app (normally a sandbox business account)." +
     "\nIf Transactions returns 403, enable 'Transaction search' under the app's Features in the Developer Dashboard.",
