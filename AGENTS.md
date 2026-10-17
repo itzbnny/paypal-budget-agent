@@ -43,6 +43,25 @@ npm run dev        # run locally with reload
 7. Before starting work, `git pull --rebase origin main`. Rebase your branch before opening the PR.
 8. **Don't modify files outside your issue's scope.** If you need to change a shared contract (types in `src/budget/types.ts`, tool schemas), call it out in the PR description.
 
+### Git is the agent's job, not the human's
+
+Teammates may not know git. **The coding agent runs every git and `gh` command**; the human only says things like "start issue #7", "ship it", or "review PR #12". Agents must follow these rules so conflicts stay rare:
+
+- **One branch = one person.** Never commit to, push to, or rebase someone else's branch. If you need their unmerged work, wait for it to merge, then rebase on `main`.
+- **Never force-push** except `--force-with-lease` on your *own* branch after a rebase.
+- **Stay in your issue's "Files / area".** If two open issues touch the same file, the second one waits or coordinates on the issue thread.
+- **Rebase on `main` at the start of every session** and right before opening or updating a PR.
+- **On a merge conflict:** resolve it only if it's mechanical (imports, adjacent lines, lockfile: rerun `npm install`). If both sides changed logic, **stop and explain the conflict to your human in plain words**, then comment on the PR. Never "resolve" by deleting the other person's code.
+- After finishing, tell your human in one sentence what happened ("PR #15 is open, CI is green, waiting for review").
+
+### Playbooks
+
+Use the step-by-step playbooks in `docs/prompts/` for common tasks. **Follow them exactly, whichever model you are:**
+
+- `docs/prompts/implement-issue.md`: take an issue from start to PR
+- `docs/prompts/review-pr.md`: review a teammate's PR
+- `docs/prompts/write-spec.md`: turn a rough issue into an exact spec (best done by the strongest available model)
+
 ## Code rules
 
 - TypeScript, ESM, `strict` mode. No `any` without a comment explaining why.
